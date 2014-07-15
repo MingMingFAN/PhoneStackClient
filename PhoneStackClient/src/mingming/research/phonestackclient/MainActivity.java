@@ -107,7 +107,13 @@ public class MainActivity extends ActionBarActivity implements Camera.PreviewCal
 		    camera=null;
 		    inPreview=false;
 		
-		new NetworkDisConnection().execute("");
+			if (clt != null) {
+				Log.i("debug", "disconnect...");
+				clt.disconnect();
+				clt = null;
+			}
+		    
+		//new NetworkDisConnection().execute("");
 		
 		super.onPause();
 	}
@@ -132,6 +138,7 @@ public class MainActivity extends ActionBarActivity implements Camera.PreviewCal
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
 			if (clt != null) {
+				Log.i("debug", "disconnect...");
 				clt.disconnect();
 				clt = null;
 			}
@@ -140,7 +147,14 @@ public class MainActivity extends ActionBarActivity implements Camera.PreviewCal
 		}
 	}
 
+	@Override
+	public void onBackPressed()
+	{
+		Log.i("debug", "back key pressed...");
 
+		// new NetworkDisConnection().execute("");
+	     super.onBackPressed();  // optional depending on your needs
+	}
 
 	private Camera.Size getBestPreviewSize(int width, int height,
 			Camera.Parameters parameters) {

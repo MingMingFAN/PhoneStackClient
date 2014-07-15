@@ -25,7 +25,7 @@ public class ClientSocket {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			while(!socket.isClosed())
 			{				
-				if(in != null ) //&&  in.ready())
+				if(in != null &&  in.ready())
 				{					
 					content = in.readLine();
 					
@@ -34,13 +34,15 @@ public class ClientSocket {
 						System.out.println("receiving message from server: " + content);
 					}
 				}
-				
+				/*
 				if(out != null)
 				{
 					out.println("data from client...");
 					out.flush();
-				}	
+				}
+				*/	
 			}
+			
 			
 			try {
 				if(in != null)
@@ -68,6 +70,13 @@ public class ClientSocket {
 	{
 		if(socket != null && !socket.isClosed())
 		{
+			out.println("close");
+			out.flush();
+			out.println("close");
+			out.flush();
+			out.println("close");
+			out.flush();
+			
 			try {
 				if(in != null)
 					in.close();
