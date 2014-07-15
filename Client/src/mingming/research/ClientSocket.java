@@ -21,10 +21,11 @@ public class ClientSocket {
 		try {
 			socket = new Socket(Utils.server_ip, Utils.port);
 			out = new PrintWriter(socket.getOutputStream(),true);
+			System.out.println("Successfully Connected to server...");
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			while(!socket.isClosed())
 			{
-				System.out.println("Connected to server...");
+				
 				if(in != null &&  in.ready())
 				{
 					String content = null;
